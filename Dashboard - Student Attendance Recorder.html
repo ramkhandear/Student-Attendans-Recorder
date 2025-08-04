@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<!-- saved from url=(0031)http://localhost:5000/dashboard -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Student Attendance Recorder</title>
+    <link href="./Dashboard - Student Attendance Recorder_files/bootstrap.min.css" rel="stylesheet">
+    <link href="./Dashboard - Student Attendance Recorder_files/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4e73df;
+            --secondary-color: #858796;
+            --success-color: #1cc88a;
+            --info-color: #36b9cc;
+            --warning-color: #f6c23e;
+            --danger-color: #e74a3b;
+        }
+        
+        body {
+            background-color: #f8f9fc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), #224abe);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+            transition: transform 0.2s;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), #224abe);
+            color: white;
+            border-radius: 15px 15px 0 0 !important;
+            font-weight: bold;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), #224abe);
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-weight: 500;
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, var(--success-color), #17a673);
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-weight: 500;
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, var(--danger-color), #be2617);
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #e3e6f0;
+            padding: 12px 15px;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+        }
+        
+        .stats-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .stats-card.success {
+            background: linear-gradient(135deg, var(--success-color), #17a673);
+        }
+        
+        .stats-card.info {
+            background: linear-gradient(135deg, var(--info-color), #2a96a5);
+        }
+        
+        .stats-card.warning {
+            background: linear-gradient(135deg, var(--warning-color), #dda20a);
+        }
+        
+        .table {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+        }
+        
+        .table thead th {
+            background: linear-gradient(135deg, var(--primary-color), #224abe);
+            color: white;
+            border: none;
+            font-weight: 600;
+        }
+        
+        .alert {
+            border-radius: 10px;
+            border: none;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            border-radius: 10px;
+            margin: 0 5px;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: white !important;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="http://localhost:5000/dashboard">
+                <i class="fas fa-graduation-cap me-2"></i>
+                Student Attendance Recorder
+            </a>
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarNav" style="">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="http://localhost:5000/dashboard">
+                            <i class="fas fa-tachometer-alt me-1"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="http://localhost:5000/students">
+                            <i class="fas fa-users me-1"></i> Students
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="http://localhost:5000/attendance">
+                            <i class="fas fa-calendar-check me-1"></i> Attendance
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="http://localhost:5000/reports">
+                            <i class="fas fa-chart-bar me-1"></i> Reports
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        
+            
+        
+
+        
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">
+            <i class="fas fa-tachometer-alt me-2"></i>
+            Dashboard
+        </h1>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="stats-card">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h3 class="mb-0">4</h3>
+                    <p class="mb-0">Total Students</p>
+                </div>
+                <div class="fs-1">
+                    <i class="fas fa-users"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stats-card success">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h3 class="mb-0">3</h3>
+                    <p class="mb-0">Present Today</p>
+                </div>
+                <div class="fs-1">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="stats-card info">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h3 class="mb-0">75.0%</h3>
+                    <p class="mb-0">Attendance Rate</p>
+                </div>
+                <div class="fs-1">
+                    <i class="fas fa-percentage"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-history me-2"></i>
+                    Recent Attendance Records
+                </h5>
+            </div>
+            <div class="card-body">
+                
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Student Name</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <tr>
+                                    <td>Achal surve</td>
+                                    <td>2025-07-20</td>
+                                    <td>
+                                        
+                                            <span class="badge bg-success">
+                                                <i class="fas fa-check me-1"></i>Present
+                                            </span>
+                                        
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>Dipak shitre</td>
+                                    <td>2025-07-20</td>
+                                    <td>
+                                        
+                                            <span class="badge bg-success">
+                                                <i class="fas fa-check me-1"></i>Present
+                                            </span>
+                                        
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>Ramdas khandekar</td>
+                                    <td>2025-07-20</td>
+                                    <td>
+                                        
+                                            <span class="badge bg-success">
+                                                <i class="fas fa-check me-1"></i>Present
+                                            </span>
+                                        
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>Shubham sambharkar</td>
+                                    <td>2025-07-20</td>
+                                    <td>
+                                        
+                                            <span class="badge bg-danger">
+                                                <i class="fas fa-times me-1"></i>Absent
+                                            </span>
+                                        
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-plus-circle me-2"></i>
+                    Quick Actions
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="http://localhost:5000/add_student" class="btn btn-primary">
+                        <i class="fas fa-user-plus me-2"></i>Add New Student
+                    </a>
+                    <a href="http://localhost:5000/attendance" class="btn btn-success">
+                        <i class="fas fa-calendar-check me-2"></i>Mark Attendance
+                    </a>
+                    <a href="http://localhost:5000/reports" class="btn btn-info">
+                        <i class="fas fa-chart-bar me-2"></i>View Reports
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-info-circle me-2"></i>
+                    System Information
+                </h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <i class="fas fa-database me-2 text-primary"></i>
+                        <strong>Database:</strong> SQLite
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-code me-2 text-success"></i>
+                        <strong>Framework:</strong> Flask
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-calendar me-2 text-info"></i>
+                        <strong>Today:</strong> <span id="current-date">Sunday, July 20, 2025</span>
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-clock me-2 text-warning"></i>
+                        <strong>Time:</strong> <span id="current-time">14:51:39</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function updateTime() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString();
+        document.getElementById('current-time').textContent = timeString;
+    }
+    
+    function updateDate() {
+        const now = new Date();
+        const dateString = now.toLocaleDateString('en-US', { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+        document.getElementById('current-date').textContent = dateString;
+    }
+    
+    updateTime();
+    updateDate();
+    setInterval(updateTime, 1000);
+</script>
+
+    </div>
+
+    <script src="./Dashboard - Student Attendance Recorder_files/bootstrap.bundle.min.js.download"></script>
+
+ </body></html>
